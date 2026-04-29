@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabKeeper</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="fireworksCanvas"></canvas>
+
+<div id="app">
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <span class="logo-icon">🗂️</span>
+          <span class="logo-text">TabKeeper</span>
+        </div>
+        <div class="tab-stats" id="tabStats">0 tabs</div>
+      </div>
+      <div class="header-right">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search tabs..." autocomplete="off">
+          <kbd class="shortcut">⌘K</kbd>
+        </div>
+        <button class="btn-icon" id="collapseAll" title="Collapse all groups">⊟</button>
+        <button class="btn-icon" id="expandAll" title="Expand all groups">⊞</button>
+        <button class="btn-icon" id="themeBtn" title="Theme & Background">🎨</button>
+        <button class="btn-refresh" id="refreshBtn" title="Refresh">↻</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="content-area">
+        <div id="tabGroups" class="tab-groups"></div>
+        <div id="emptyState" class="empty-state hidden">
+          <div class="empty-icon">🎉</div>
+          <p>No tabs found</p>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="quick-actions">
+          <h3 class="section-title">Quick Actions</h3>
+          <button class="action-btn danger" id="closeDuplicates">
+            <span>🔗</span> Close Duplicates
+          </button>
+        </div>
+
+        <div class="category-legend" id="categoryLegend">
+          <h3 class="section-title">Categories</h3>
+          <div id="legendItems"></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Theme panel -->
+  <div id="themePanel" class="theme-panel hidden">
+    <div class="theme-panel-header">
+      <span>Appearance</span>
+      <button id="themePanelClose">✕</button>
+    </div>
+    <div class="theme-section-title">Theme</div>
+    <div class="theme-swatches" id="themeSwatches"></div>
+  </div>
+
+  <!-- Bookmark editor popover -->
+  <div id="bookmarkPopover" class="bm-popover hidden">
+    <div class="bm-popover-header">
+      <span class="bm-popover-title">Edit Bookmark</span>
+      <button class="bm-popover-close" id="bmClose">✕</button>
+    </div>
+    <label class="bm-label">Name</label>
+    <input class="bm-input" id="bmTitle" type="text" spellcheck="false">
+    <label class="bm-label">Folder</label>
+    <select class="bm-select" id="bmFolder"></select>
+    <div class="bm-popover-actions">
+      <button class="bm-btn-remove" id="bmRemove">Remove</button>
+      <button class="bm-btn-save" id="bmSave">Done</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="confirmModal" class="modal hidden">
+    <div class="modal-box">
+      <p id="confirmText"></p>
+      <div class="modal-actions">
+        <button id="confirmYes" class="btn-danger">Close</button>
+        <button id="confirmNo" class="btn-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="fireworks.js"></script>
+  <script src="theme.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
